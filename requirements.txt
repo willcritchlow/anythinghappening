@@ -1,2 +1,4 @@
 reddit
 django
+south
+MySQL-python
