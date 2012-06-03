@@ -16,4 +16,4 @@ class NewsItem(models.Model):
     created = models.DateTimeField()
 
     def __unicode__(self):
-        return self.title
+        return "%s: %s" % (self.created, self.title)
