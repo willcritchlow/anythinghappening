@@ -6,7 +6,7 @@ class NewsCheck(models.Model):
     time = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return unicode(self.time)
+        return "%s: %s" % (self.user, self.time)
 
 class NewsItem(models.Model):
     slug = models.CharField(unique=True, max_length=255)
@@ -14,6 +14,7 @@ class NewsItem(models.Model):
     url = models.URLField()
     comment_url = models.URLField()
     created = models.DateTimeField()
+    score = models.IntegerField()
 
     def __unicode__(self):
-        return "%s: %s" % (self.created, self.title)
+        return "%s" % self.title
