@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.contrib.auth.decorators import login_required
 from news.models import NewsCheck, NewsItem
 import reddit
@@ -32,3 +32,4 @@ def temp(request):
             ni.save()
         except:
             print "%s already in database" % ni
+    return redirect("/")
