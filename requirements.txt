@@ -2,3 +2,5 @@ reddit
 django
 south
 MySQL-python
+psycopg2
+dj-database-url
