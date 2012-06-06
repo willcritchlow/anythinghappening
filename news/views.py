@@ -1,5 +1,6 @@
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from news.models import NewsCheck, NewsItem
 import reddit
 from datetime import datetime
@@ -33,3 +34,19 @@ def temp(request):
         except:
             print "%s already in database" % ni
     return redirect("/")
+
+@login_required
+def check(request, nc_id):
+    nc = get_object_or_404(NewsCheck, id=nc_id)
+    if nc.user != request.user:
+        raise Http404
+
+    try:
+        previous_nc = NewsCheck.objects.filter(time__lt=nc.time).order_by('-time')[0]
+        start_time = previous_nc.time
+    except:
+        start_time = nc.time
+
+    ni = NewsItem.objects.filter(created__gt=start_time).filter(created__lt=nc.time)
+
+    return render_to_response('news/check.html', {'nc': nc, 'ni': ni})
