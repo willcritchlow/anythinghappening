@@ -14,7 +14,7 @@ def home(request):
         ni = NewsItem()
         ni.slug = submission.id
         ni.title = submission.title
-        ni.url = submission.url
+        ni.url = submission.short_link # use the short link to guarantee it will fit in the database
         ni.comment_url = submission.permalink
         ni.created = datetime.fromtimestamp(submission.created_utc)
         ni.score = submission.score
