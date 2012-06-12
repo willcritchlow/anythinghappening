@@ -7,6 +7,7 @@ class Command(BaseCommand):
     help = 'Gets upated top stories from reddit'
 
     def handle(self, *args, **options):
+        print "Getting reddit update"
         r = reddit.Reddit('willcritchlow anythinginterestingbot')
         submissions = r.get_subreddit('worldnews').get_top('week')
         for submission in submissions:
