@@ -25,3 +25,4 @@ class Command(BaseCommand):
                 ni.save()
             except:
                 print "Error saving %s" % ni.title
+        print "Reddit update complete"
