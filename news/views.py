@@ -46,4 +46,10 @@ def check(request, nc_id=None):
 
     ni = ni.order_by('-score')[:5]
 
-    return render_to_response('news/home.html', {'user': request.user, 'news': ni})
+    prev = NewsCheck.objects.filter(user=request.user)
+    if nc_id:
+        prev = prev.filter(time__lt=nc.time)
+
+    prev = prev.order_by('-time')[:5]
+
+    return render_to_response('news/home.html', {'user': request.user, 'news': ni, 'nc': prev})

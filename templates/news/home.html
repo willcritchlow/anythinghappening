@@ -1,4 +1,4 @@
-{{ user }}
+<p>{{ user }}</p>
 
 {% if news %}
 <ul>
@@ -7,5 +7,14 @@
 {% endfor %}
 </ul>
 {% else %}
-Explanation
+<p>Explanation goes here about why there are no results.</p>
+{% endif %}
+
+{% if nc %}
+<p>If you need them, here are links to previous checks you made.</p>
+<ul>
+{% for check in nc %}
+<li><a href="{% url check check.id %}">{{ check.time }}</a></li>
+{% endfor %}
+</ul>
 {% endif %}
