@@ -1,5 +1,9 @@
 <p><a href="{% url home %}">{{ user }}</a></p>
 
+{% if not start %}
+<p>Welcome. On your first check, we just show some recent news without regard to its importance. When you check back in future, you'll only see news if something has actually happened since you last checked.</p>
+{% endif %}
+
 {% if news %}
 <ul>
 {% for ni in news %}

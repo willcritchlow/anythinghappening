@@ -10,20 +10,31 @@ def check(request, nc_id=None):
         nc = get_object_or_404(NewsCheck, id=nc_id)
         if nc.user != request.user:
             raise Http404
-        start = my_nc.filter(time__lt=nc.time).order_by('-time')[0].time
+        try:
+            start = my_nc.filter(time__lt=nc.time).order_by('-time')[0].time
+        except:
+            start = None
         end = nc.time
     else:
-        start = my_nc.order_by('-time')[0].time
+        try:
+            start = my_nc.order_by('-time')[0].time
+        except:
+            start = None
         end = None
         nc = NewsCheck()
         nc.user = request.user
         nc.save()
 
-    ni = NewsItem.objects.filter(created__gt=start)
+    ni = NewsItem.objects.all()
+    if start:
+        ni = ni.filter(created__gt=start)
     if end:
         ni = ni.filter(created__lt=end)
 
-    ni = ni.order_by('-score')[:5]
+    if start:
+        ni = ni.order_by('-score')[:5]
+    else:
+        ni = ni.order_by('-created')[:5]
 
     prev = NewsCheck.objects.filter(user=request.user)
     if nc_id:
@@ -31,4 +42,4 @@ def check(request, nc_id=None):
 
     prev = prev.order_by('-time')[:5]
 
-    return render_to_response('news/home.html', {'user': request.user, 'news': ni, 'nc': prev})
+    return render_to_response('news/home.html', {'user': request.user, 'news': ni, 'nc': prev, 'start': start})
