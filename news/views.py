@@ -7,7 +7,7 @@ import reddit
 from datetime import datetime
 
 @login_required
-def home(request):
+def check(request, nc_id=None):
     r = reddit.Reddit('willcritchlow anythinginterestingbot')
     submissions = r.get_subreddit('worldnews').get_top('week')
     for submission in submissions:
@@ -25,28 +25,25 @@ def home(request):
             ni.save()
         except:
             print "Error saving %s" % ni.title
-    try:
-        last_check = NewsCheck.objects.filter(user=request.user).order_by('-time')[0]
-        relevant_news = NewsItem.objects.filter(created__gt=last_check.time).order_by('-score')[:5]
-    except:
-        relevant_news = None
-    nc = NewsCheck()
-    nc.user = request.user
-    nc.save()
-    return render_to_response('news/home.html', {'user': request.user, 'news': relevant_news})
 
-@login_required
-def check(request, nc_id):
-    nc = get_object_or_404(NewsCheck, id=nc_id)
-    if nc.user != request.user:
-        raise Http404
+    my_nc = NewsCheck.objects.filter(user=request.user)
+    if nc_id:
+        nc = get_object_or_404(NewsCheck, id=nc_id)
+        if nc.user != request.user:
+            raise Http404
+        start = my_nc.filter(time__lt=nc.time).order_by('-time')[0].time
+        end = nc.time
+    else:
+        start = my_nc.order_by('-time')[0].time
+        end = None
+        nc = NewsCheck()
+        nc.user = request.user
+        nc.save()
 
-    try:
-        previous_nc = NewsCheck.objects.filter(time__lt=nc.time).order_by('-time')[0]
-        start_time = previous_nc.time
-    except:
-        start_time = nc.time
+    ni = NewsItem.objects.filter(created__gt=start)
+    if end:
+        ni = ni.filter(created__lt=end)
 
-    ni = NewsItem.objects.filter(created__gt=start_time).filter(created__lt=nc.time)
+    ni = ni.order_by('-score')[:5]
 
-    return render_to_response('news/check.html', {'nc': nc, 'ni': ni})
+    return render_to_response('news/home.html', {'user': request.user, 'news': ni})

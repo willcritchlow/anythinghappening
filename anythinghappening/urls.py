@@ -4,7 +4,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'news.views.home', name='home'),
+    url(r'^$', 'news.views.check', name='home'),
     url(r'^news/', include('news.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
