@@ -1,4 +1,4 @@
-<p><a href="{% url home %}">{{ user }}</a></p>
+<p><a href="{% url index %}">Home</a> | <a href="{% url home %}">{{ user }}</a></p>
 
 {% if not start %}
 <p>Welcome. On your first check, we just show some recent news without regard to its importance. When you check back in future, you'll only see news if something has actually happened since you last checked.</p>
@@ -11,11 +11,11 @@
 {% endfor %}
 </ul>
 {% else %}
-<p>Explanation goes here about why there are no results.</p>
+<p>NBED Explanation goes here about why there are no results.</p>
 {% endif %}
 
 {% if nc %}
-<p>If you need them, here are links to previous checks you made.</p>
+<p>If you need them, here are links to previous checks you made:</p>
 <ul>
 {% for check in nc %}
 <li><a href="{% url check check.id %}">{{ check.time }}</a></li>

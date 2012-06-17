@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from news.models import NewsCheck, NewsItem
 
+def index(request):
+    return render_to_response('news/index.html', {})
+
 @login_required
 def check(request, nc_id=None):
     my_nc = NewsCheck.objects.filter(user=request.user)
