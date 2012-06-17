@@ -119,7 +119,7 @@ INSTALLED_APPS = (
 )
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/news/'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
