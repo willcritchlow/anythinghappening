@@ -4,3 +4,4 @@
     <input type="submit" value="Login" />
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
+<p>If you don't have an account you can <a href="{% url create %}{% if next %}?next={{ next }}{% endif %}">register here</a>.</p>

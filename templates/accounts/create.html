@@ -1,0 +1,7 @@
+<form method="POST" action="{% url create %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Register" />
+    <input type="hidden" name="next" value="{{ next }}" />
+</form>
+<p>If you already have an account you can <a href="{% url login %}{% if next %}?next={{ next }}{% endif %}">login here</a>.</p>
