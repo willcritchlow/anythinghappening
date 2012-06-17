@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     url(r'^$', 'news.views.index', name='index'),
     url(r'^news/', include('news.urls')),
     url(r'^accounts/', include('accounts.urls')),
+    url(r'^management/', include('management.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 )

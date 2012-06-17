@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Anything Happening management console{% endblock %}
+
+{% block content %}
+
+<h1>Management data</h1>
+
+<p>There are now {{ count }} users registered.</p>
+
+<p>There have been {{ active_count }} users active this week.</p>
+
+<ul>
+{% for user, count in active_users.items %}
+<li><strong>{{ user }}</strong>: {{ count.count }} checks</li>
+{% empty %}
+<li>Try harder!</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
