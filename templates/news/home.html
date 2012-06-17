@@ -7,17 +7,23 @@
 {% block content %}
 
 {% if not start %}
-<p>Welcome. On your first check, we just show some recent news without regard to its importance. When you check back in future, you'll only see news if something has actually happened since you last checked.</p>
+<h1>Welcome</h1>
+<p>On your first check, we just show some recent news without regard to its importance. When you check back in future, you'll only see news if something has actually happened since you last checked(*).</p>
+<p>Here's what it'll look like when there is something to show you. Feel free to refresh this page to see what we show you when there's nothing new to see:</p>
 {% endif %}
 
 {% if news %}
+{% if start %}
+<h1>News you might need to know about</h1>
+{% endif %}
 <ul>
 {% for ni in news %}
 <li>{{ ni }} <a href="{{ ni.url }}">link</a> | <a href="{{ ni.comment_url }}">comments</a> [{{ ni.created }}]</li>
 {% endfor %}
 </ul>
 {% else %}
-<p>NBED Explanation goes here about why there are no results.</p>
+<h1>There is nothing new happening that you need to know about.</h1>
+<p>Remember we only show you news stories if there is something significant and new since you last checked. <strong>There isn't</strong>.</p>
 {% endif %}
 
 {% if nc %}

@@ -12,6 +12,9 @@
     <input type="submit" value="Register" />
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
+
+<p>I will never use your email address for anything unrelated to this app (and there will always be a simple unsubscribe link).</p>
+
 <p>If you already have an account you can <a href="{% url login %}{% if next %}?next={{ next }}{% endif %}">login here</a>.</p>
 
 {% endblock %}

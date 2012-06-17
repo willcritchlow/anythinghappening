@@ -6,6 +6,23 @@
 
 {% block content %}
 
-<p>NBED Explanation goes here</p>
+<h1>It's like inbox zero for world news</h1>
+
+<p>I have two problems with news:</p>
+
+<ol>
+    <li>I waste far too much time reading news I'm only barely interested in</li>
+    <li>Despite this, I still never manage to stay up to date with world news</li>
+</ol>
+
+<p>It's embarrassing when someone asks you about some major world event and you have no idea it's even taking place.</p>
+
+<p>This little app is designed to help alleviate the problem. After you <a href="{% url create %}">create an account</a> and <a href="{% url login %}">login</a> you get taken to your personalised <a href="{% url home %}">news homepage</a>. There you will see the most significant(*) pieces of world news <strong>since you last checked</strong>. If nothing has broken into the week's top 25 news stories since your last check <strong>you will see nothing</strong>.</p>
+
+<p>It's like inbox zero for your world news needs.</p>
+
+<p><strong>Feel free to check it as often as you like - it'll never distract you if nothing interesting's happening.</strong></p>
+
+<p>Yes, in future, I plan to add functionality to ping you if something seriously important is happening.</p>
 
 {% endblock %}
