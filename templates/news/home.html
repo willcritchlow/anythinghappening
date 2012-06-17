@@ -2,8 +2,6 @@
 
 {% block title %}{{ user }}'s news: {{ nc.1.time }}{% endblock %}
 
-{% block toplinks %} | Logged in as {{ user }} | <a href="{% url logout %}">Logout</a>{% endblock %}
-
 {% block content %}
 
 {% if not start %}

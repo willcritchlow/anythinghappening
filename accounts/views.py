@@ -26,4 +26,4 @@ def create(request):
                 return redirect('home')
     else:
         form = MyUserCreationForm()
-    return render_to_response('accounts/create.html', {'form': form, 'next': next_page}, context_instance=RequestContext(request))
+    return render_to_response('accounts/create.html', {'form': form, 'next': next_page, 'user': request.user}, context_instance=RequestContext(request))

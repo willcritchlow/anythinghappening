@@ -5,7 +5,7 @@
     </head>
 
     <body>
-        <p><a href="{% url index %}">Home</a> | <a href="{% url home %}">News</a>{% block toplinks %}{% endblock %}</p>
+        <p><a href="{% url index %}">Home</a> | <a href="{% url home %}">News</a> | {% if user.is_anonymous %}<a href="{% url login %}">Login</a> | <a href="{% url create %}">Create account</a>{% else %}Logged in as {{ user }} | <a href="{% url logout %}">Logout</a>{% endif %}</p>
 
         {% block content %}{% endblock %}
 

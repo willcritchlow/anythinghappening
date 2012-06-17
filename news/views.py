@@ -4,7 +4,7 @@ from django.http import Http404
 from news.models import NewsCheck, NewsItem
 
 def index(request):
-    return render_to_response('news/index.html', {})
+    return render_to_response('news/index.html', {'user': request.user})
 
 @login_required
 def check(request, nc_id=None):
