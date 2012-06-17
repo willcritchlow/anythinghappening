@@ -1,0 +1,16 @@
+<html>
+
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+        <p><a href="{% url index %}">Home</a> | <a href="{% url home %}">News</a>{% block toplinks %}{% endblock %}</p>
+
+        {% block content %}{% endblock %}
+
+        <p>Contact me at <a href="mailto:will.critchlow@distilled.net">will.critchlow@distilled.net</a> with any questions or feedback.</p>
+
+    </body>
+
+</html>

@@ -1,3 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Login to get inbox zero news{% endblock %}
+
+{% block toplinks %} | <a href="{% url create %}">Create account</a>{% endblock %}
+
+{% block content %}
+
 <form method="POST" action="{% url login %}">
     {% csrf_token %}
     {{ form.as_p }}
@@ -5,3 +13,5 @@
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
 <p>If you don't have an account you can <a href="{% url create %}{% if next %}?next={{ next }}{% endif %}">register here</a>.</p>
+
+{% endblock %}

@@ -1,7 +1,11 @@
 from django.shortcuts import render_to_response, redirect
 from accounts.forms import MyUserCreationForm
 from django.template import RequestContext
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')
 
 def create(request):
     if 'next' in request.GET:

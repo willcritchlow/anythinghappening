@@ -1,3 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Home of AnythingHappening: Inbox zero for world news{% endblock %}
+
+{% block toplinks %} | <a href="{% url login %}">Login</a> | <a href="{% url create %}">Create account</a>{% endblock %}
+
+{% block content %}
+
 <p>NBED Explanation goes here</p>
 
-<p><a href="{% url home %}">News</a></p>
+{% endblock %}

@@ -1,4 +1,10 @@
-<p><a href="{% url index %}">Home</a> | <a href="{% url home %}">{{ user }}</a></p>
+{% extends "base.html" %}
+
+{% block title %}{{ user }}'s news: {{ nc.1.time }}{% endblock %}
+
+{% block toplinks %} | Logged in as {{ user }} | <a href="{% url logout %}">Logout</a>{% endblock %}
+
+{% block content %}
 
 {% if not start %}
 <p>Welcome. On your first check, we just show some recent news without regard to its importance. When you check back in future, you'll only see news if something has actually happened since you last checked.</p>
@@ -22,3 +28,5 @@
 {% endfor %}
 </ul>
 {% endif %}
+
+{% endblock %}
