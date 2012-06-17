@@ -115,7 +115,11 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'news',
+    'accounts',
 )
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
